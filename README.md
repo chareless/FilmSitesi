@@ -1,4 +1,4 @@
-# FilmSitesi
+# Proje hakkında.
 
 -Projenin açıklaması ve amacı-
 
