@@ -26,7 +26,7 @@ namespace FilmSitesi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            var connection = @"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = ExtraOrdi; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False";
+            var connection = @"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = ExtraOrdi; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;AttachDbFilename=|DataDirectory|/ExtraOrdi.mdf";
             services.AddDbContext<VeriContext>(options => options.UseSqlServer(connection));
         }
 
