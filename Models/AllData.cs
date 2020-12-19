@@ -16,6 +16,7 @@ namespace FilmSitesi.Models
            public List<Product> Product { get; set; }
            public List<User> Users { get; set; }
            public List<Yorum> Yorum { get; set; }
+           public List<Slider> Slider { get; set; }
             
     }
     

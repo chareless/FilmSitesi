@@ -35,8 +35,8 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="./index.html">
-                            <img src="img/logo.png" alt="">
+                        <a asp-controller="Home" asp-action="Index">
+                            <img src="../../img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -71,11 +71,9 @@
             <div id="mobile-menu-wrap"></div>
         </div>
     </header>
-    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
 
     <!-- Footer Section Begin -->
     <footer class="footer">
@@ -86,13 +84,13 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="footer__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a asp-controller="Home" asp-action="Index"><img src="../../img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="footer__nav">
                         <ul>
-                            <li class="active"><a href="./index.html">Anasayfa</a></li>
+                            <li class="active"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
                             <li><a href="./categories.html">Kategoriler</a></li>
                             <li><a href="#">İletişim</a></li>
                         </ul>
