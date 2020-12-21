@@ -14,10 +14,17 @@ namespace FilmSitesi.Models
            public List<Movies> Movies { get; set; }
            public List<Series> Series { get; set; }
            public List<Product> Product { get; set; }
-           public List<User> Users { get; set; }
+           public List<User> User { get; set; }
            public List<Yorum> Yorum { get; set; }
            public List<Slider> Slider { get; set; }
             
+           public Anime anime { get; set; }
+           public Movies movies { get; set; }
+           public Series series { get; set; }
+           public Product product { get; set; }
+           public User user { get; set; }
+           public Yorum yorum { get; set; }
+           public Slider slider { get; set; }
     }
     
 
