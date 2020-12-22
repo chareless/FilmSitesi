@@ -13,36 +13,36 @@ namespace FilmSitesi.Models
         
         public int id { get; set; }
 
-        [Display(Name = "Ürün İsmi")]
+        [Display(Name = "İsim")]
         public string isim { get; set; }
 
-        [Display(Name = "Ürün Açıklaması")]
+        [Display(Name = "Hakkında")]
         public string hakkında { get; set; }
 
         [Display(Name = "Kategori")]
         public string kategori { get; set; }
 
 
-        [Display(Name = "Ürünün Yapımcısı")]
+        [Display(Name = "Yapımcı")]
         public string yapımcı { get; set; }
 
 
-        [Display(Name = "Ürün Tarihi")]
+        [Display(Name = "Tarih")]
         public string tarihi { get; set; }
 
 
-        [Display(Name = "Ürünün Türü")]
+        [Display(Name = "Tür")]
         public string tur { get; set; }
 
-        [Display(Name = "Ürünün Skoru")]
+        [Display(Name = "Skor")]
         public int skor { get; set; }
 
 
-        [Display(Name = "Toplam Süre")]
+        [Display(Name = "Süre")]
         public string süre { get; set; }
 
 
-        [Display(Name ="Ürün Fotoğraf Url")]
+        [Display(Name ="Fotoğraf")]
         public string url { get; set; }
 
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using FilmSitesi.Models;
 
 namespace FilmSitesi.Models
 {
@@ -20,6 +21,7 @@ namespace FilmSitesi.Models
             public DbSet<Anime> anime { get; set; }
             public DbSet<Movies> movie{ get; set; }
             public DbSet<Series> serie { get; set; }
+            public DbSet<FilmSitesi.Models.Slider> Slider { get; set; }
            
 
         }

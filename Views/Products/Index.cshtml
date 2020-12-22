@@ -1,0 +1,86 @@
+﻿@model IEnumerable<FilmSitesi.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+    <div class=card>
+        <div class="card-body">            
+                <table class="table">
+                    
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.isim)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.hakkında)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.kategori)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.yapımcı)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tarihi)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tur)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.skor)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.süre)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.url)
+                                </th>
+                                <th></th>
+                            </tr>
+                      
+                            
+                    <tbody class="alert-primary">
+                        @foreach (var item in Model)
+                        {
+                            
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.isim)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.hakkında)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.kategori)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.yapımcı)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tarihi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tur)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.skor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.süre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.url)
+                                </td>
+                                <td><a asp-action="Edit" asp-route-id="@item.id">Edit</a> </td>
+                                <td><a asp-action="Details" asp-route-id="@item.id">Details</a></td>
+                                <td><a asp-action="Delete" asp-route-id="@item.id">Delete</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            
+        </div>
+    </div>
+
