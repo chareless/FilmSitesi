@@ -5,69 +5,72 @@
     Layout = "_LayoutAdmin";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.isim)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.isim)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.hakkında)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.hakkında)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.kategori)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.kategori)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.yapımcı)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.yapımcı)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.tarihi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.tarihi)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.tur)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.tur)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.skor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.skor)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.süre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.süre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.url)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.url)
-        </dd>
-    </dl>
+
+<div class="card">
+    <div class="card-body">
+        <h4>Ürün</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.isim)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.isim)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.hakkında)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.hakkında)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.kategori)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.kategori)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.yapımcı)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.yapımcı)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.tarihi)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.tarihi)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.tur)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.tur)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.skor)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.skor)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.süre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.süre)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.url)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.url)
+            </dd>
+        </dl>
+            <div>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+                <a  class="btn btn-primary" asp-action="Index">Back to List</a>
+            </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+

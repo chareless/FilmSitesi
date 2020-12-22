@@ -7,7 +7,7 @@
 
     <div class=card>
         <div class="card-body">            
-                <table class="table">
+                <table class="table-dark table-sm">
                     
                             <tr>
                                 <th>
@@ -41,7 +41,7 @@
                             </tr>
                       
                             
-                    <tbody class="alert-primary">
+                    <tbody class="alert-light table-bordered">
                         @foreach (var item in Model)
                         {
                             
@@ -73,9 +73,10 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.url)
                                 </td>
-                                <td><a asp-action="Edit" asp-route-id="@item.id">Edit</a> </td>
-                                <td><a asp-action="Details" asp-route-id="@item.id">Details</a></td>
-                                <td><a asp-action="Delete" asp-route-id="@item.id">Delete</a></td>
+                                <td><a class="btn btn-success" asp-action="Edit" asp-route-id="@item.id">Edit</a></td>
+                                <td><a class="btn btn-primary" asp-action="Details" asp-route-id="@item.id">Details</a></td>
+                                <td><a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.id">Delete</a></td>
+                                
                             </tr>
                         }
                     </tbody>
