@@ -20,14 +20,14 @@
           rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/plyr.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="~/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/style.css" type="text/css">
 </head>
 <body>
     <header class="header">
@@ -44,27 +44,24 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="./index.html">Anasayfa</a></li>
+                                <li class="active"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
                                 <li>
-                                    <a href="./index.html">Kategoriler <span class="arrow_carrot-down"></span></a>
+                                    <a asp-controller="Home" asp-action="Index">Kategoriler <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="./movies.html">Filmler</a></li>
-                                        <li><a href="./series.html">Diziler</a></li>
-                                        <li><a href="./animes.html">Animeler</a></li>
-                                        <li><a href="./games.html">Oyunlar</a></li>
-                                        <li><a href="./login.html">Giriş Yap</a></li>
-                                        <li><a href="./signup.html">Üye Ol</a></li>
+                                        <li><a asp-controller="Home" asp-action="Filmler">Filmler</a></li>
+                                        <li><a asp-controller="Home" asp-action="Diziler">Diziler</a></li>
+                                        <li><a asp-controller="Home" asp-action="Animeler">Animeler</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">İletişim</a></li>
+                                <li><a asp-controller="Home" asp-action="Iletisim">İletişim</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="header__right">
-                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        <a href="./login.html"><span class="icon_profile"></span></a>
+                        <a asp-controller="Home" asp-action="Arama" class="search-switch"><span class="icon_search"></span></a>
+                        <a asp-controller="Home" asp-action="Kayit"><span class="icon_profile"></span></a>
                     </div>
                 </div>
             </div>
@@ -91,8 +88,8 @@
                     <div class="footer__nav">
                         <ul>
                             <li class="active"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
-                            <li><a href="./categories.html">Kategoriler</a></li>
-                            <li><a href="#">İletişim</a></li>
+                            <li><a asp-controller="Home" asp-action="Index">Kategoriler</a></li>
+                            <li><a asp-controller="Home" asp-action="Iletisim">İletişim</a></li>
                         </ul>
                     </div>
                 </div>

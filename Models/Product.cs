@@ -13,6 +13,9 @@ namespace FilmSitesi.Models
         
         public int id { get; set; }
 
+        [Display(Name = "ID İsim")]
+        public string idName { get; set; }
+
         [Display(Name = "İsim")]
         public string isim { get; set; }
 
@@ -45,7 +48,14 @@ namespace FilmSitesi.Models
         [Display(Name ="Fotoğraf")]
         public string url { get; set; }
 
+        [Display(Name = "Fragman URL")]
 
+        public string fragman { get; set; }
+
+        public ICollection<Anime> animes { get; set; }
+        public ICollection<Movies> movies { get; set; }
+        public ICollection<Series> series { get; set; }
+        public ICollection<Yorum> yorumlar { get; set; }
         
 
     }

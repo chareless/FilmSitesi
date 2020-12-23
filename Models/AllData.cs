@@ -18,14 +18,15 @@ namespace FilmSitesi.Models
            public List<Yorum> Yorum { get; set; }
            public List<Slider> Slider { get; set; }
             
-           public Anime anime { get; set; }
+           public Anime animes { get; set; }
            public Movies movies { get; set; }
            public Series series { get; set; }
            public Product product { get; set; }
            public User user { get; set; }
            public Yorum yorum { get; set; }
            public Slider slider { get; set; }
+
     }
-    
+
 
 }

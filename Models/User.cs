@@ -33,5 +33,7 @@ namespace FilmSitesi.Models
 
         [Display(Name = "Mail Adresi")]
         public string email { get; set; }
+
+        ICollection<Yorum> yorumlar { get; set; }
     }
 }
