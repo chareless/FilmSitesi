@@ -21,6 +21,46 @@ namespace FilmSitesi.Controllers
         {
             return View();
         }
+
+        public IActionResult Filmler(string sortOrder)
+        {
+            if(sortOrder!=null)
+            {
+                var movies = from Movies in _context.movie orderby Movies.Product.isim select Movies;
+                var Class = new AllData();
+                Class.Movies = movies.ToList();
+                return View(Class);
+            }
+            
+            return View();
+        }
+
+        public IActionResult Diziler(string sortOrder)
+        {
+            if (sortOrder != null)
+            {
+                var series= from Series in _context.serie orderby Series.Product.isim select Series;
+                var Class = new AllData();
+                Class.Series = series.ToList();
+                return View(Class);
+            }
+
+            return View();
+        }
+
+        public IActionResult Animeler(string sortOrder)
+        {
+            if (sortOrder != null)
+            {
+                var animes = from Anime in _context.anime orderby Anime.Product.isim select Anime;
+                var Class = new AllData();
+                Class.Anime = animes.ToList();
+                return View(Class);
+            }
+
+            return View();
+        }
+
         public IActionResult Icerik(string text)
         {
             var product = from Product in _context.product where Product.idName == text select Product;
