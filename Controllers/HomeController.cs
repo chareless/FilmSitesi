@@ -24,7 +24,7 @@ namespace FilmSitesi.Controllers
 
         public IActionResult Filmler(string sortOrder)
         {
-            if(sortOrder!=null)
+            if(sortOrder=="sort")
             {
                 var movies = from Movies in _context.movie orderby Movies.Product.isim select Movies;
                 var Class = new AllData();
@@ -37,7 +37,7 @@ namespace FilmSitesi.Controllers
 
         public IActionResult Diziler(string sortOrder)
         {
-            if (sortOrder != null)
+            if (sortOrder =="sort")
             {
                 var series= from Series in _context.serie orderby Series.Product.isim select Series;
                 var Class = new AllData();
@@ -50,7 +50,7 @@ namespace FilmSitesi.Controllers
 
         public IActionResult Animeler(string sortOrder)
         {
-            if (sortOrder != null)
+            if (sortOrder =="sort")
             {
                 var animes = from Anime in _context.anime orderby Anime.Product.isim select Anime;
                 var Class = new AllData();
