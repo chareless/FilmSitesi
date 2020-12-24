@@ -19,7 +19,12 @@ namespace FilmSitesi.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var slider = _context.Slider.ToList();
+            var product = _context.product.ToList();
+            var Class = new AllData();
+            Class.Slider=slider;
+            Class.Product = product;
+            return View(Class);
         }
 
         public IActionResult Filmler(string sortOrder)

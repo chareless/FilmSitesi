@@ -18,13 +18,13 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="hakkında" class="control-label"></label>
-                            <textarea asp-for="hakkında" class="form-control" ></textarea>
+                            <textarea asp-for="hakkında" class="form-control"></textarea>
                             <span asp-validation-for="hakkında" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="kategori" class="control-label"></label>
-                            <input asp-for="kategori" class="form-control" />
-                            <span asp-validation-for="kategori" class="text-danger"></span>
+                            <label asp-for="tur" class="control-label"></label>
+                            <input asp-for="tur" class="form-control" />
+                            <span asp-validation-for="tur" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="yapımcı" class="control-label"></label>
@@ -37,16 +37,20 @@
                             <span asp-validation-for="tarihi" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="tur" class="control-label"></label>                            
-                            <select asp-for="tur" class="form-control" id="tur">
-                                <option>Film</option>
-                                <option>Dizi</option>
-                                <option>Anime</option>
-                                
-                            </select>
-                            <span asp-validation-for="tur" class="text-danger"></span>
-                            
+                            <label asp-for="kategori" class="control-label">Kategori</label>
+
+                            <div>
+                                <select  asp-for="kategori" class="form-control" id="">
+                                    <option>Film</option>
+                                    <option>Dizi</option>
+                                    <option>Anime</option>
+
+                                </select>
+                            </div>
+                            <span asp-validation-for="kategori" class="text-danger"></span>
                         </div>
+                        <br /><br />
+                        
                         <div class="form-group">
                             <label asp-for="skor" class="control-label"></label>
                             <input asp-for="skor" class="form-control" />
@@ -61,6 +65,16 @@
                             <label asp-for="url" class="control-label"></label>
                             <input asp-for="url" class="form-control" />
                             <span asp-validation-for="url" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="fragman" class="control-label"></label>
+                            <input asp-for="fragman" class="form-control" />
+                            <span asp-validation-for="fragman" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="idName" class="control-label"></label>
+                            <input asp-for="idName" class="form-control" />
+                            <span asp-validation-for="idName" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Create" class="btn btn-primary" />

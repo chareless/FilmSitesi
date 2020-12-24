@@ -66,6 +66,18 @@
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.url)
             </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.fragman)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.fragman)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.idName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.idName)
+            </dd>
         </dl>
             <div>
                 <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.id">Edit</a> |

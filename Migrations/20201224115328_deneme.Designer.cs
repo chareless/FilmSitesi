@@ -4,14 +4,16 @@ using FilmSitesi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FilmSitesi.Migrations
 {
     [DbContext(typeof(VeriContext))]
-    partial class VeriContextModelSnapshot : ModelSnapshot
+    [Migration("20201224115328_deneme")]
+    partial class deneme
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,7 @@ namespace FilmSitesi.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("productId")
+                    b.Property<int?>("productId")
                         .HasColumnType("int");
 
                     b.HasKey("id");
@@ -43,7 +45,7 @@ namespace FilmSitesi.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("productId")
+                    b.Property<int?>("productId")
                         .HasColumnType("int");
 
                     b.HasKey("id");
@@ -105,7 +107,7 @@ namespace FilmSitesi.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("productId")
+                    b.Property<int?>("productId")
                         .HasColumnType("int");
 
                     b.HasKey("id");
@@ -194,9 +196,7 @@ namespace FilmSitesi.Migrations
                 {
                     b.HasOne("FilmSitesi.Models.Product", "Product")
                         .WithMany("animes")
-                        .HasForeignKey("productId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("productId");
 
                     b.Navigation("Product");
                 });
@@ -205,9 +205,7 @@ namespace FilmSitesi.Migrations
                 {
                     b.HasOne("FilmSitesi.Models.Product", "Product")
                         .WithMany("movies")
-                        .HasForeignKey("productId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("productId");
 
                     b.Navigation("Product");
                 });
@@ -216,9 +214,7 @@ namespace FilmSitesi.Migrations
                 {
                     b.HasOne("FilmSitesi.Models.Product", "Product")
                         .WithMany("series")
-                        .HasForeignKey("productId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("productId");
 
                     b.Navigation("Product");
                 });

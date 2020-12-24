@@ -13,6 +13,7 @@ namespace FilmSitesi.Models
 
         public int id { get; set; }
 
+        public int productId { get; set; }
 
         [ForeignKey("productId")]
         public Product Product { get; set; }

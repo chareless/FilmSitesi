@@ -21,7 +21,8 @@ namespace FilmSitesi.Controllers
         // GET: Animes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.anime.ToListAsync());
+            var veriContext = _context.anime.Include(a => a.Product);
+            return View(await veriContext.ToListAsync());
         }
 
         // GET: Animes/Details/5
@@ -33,6 +34,7 @@ namespace FilmSitesi.Controllers
             }
 
             var anime = await _context.anime
+                .Include(a => a.Product)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (anime == null)
             {
@@ -45,6 +47,7 @@ namespace FilmSitesi.Controllers
         // GET: Animes/Create
         public IActionResult Create()
         {
+            ViewData["productId"] = new SelectList(_context.product, "id", "id");
             return View();
         }
 
@@ -53,7 +56,7 @@ namespace FilmSitesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id")] Anime anime)
+        public async Task<IActionResult> Create([Bind("id,productId")] Anime anime)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +64,7 @@ namespace FilmSitesi.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["productId"] = new SelectList(_context.product, "id", "id", anime.productId);
             return View(anime);
         }
 
@@ -77,6 +81,7 @@ namespace FilmSitesi.Controllers
             {
                 return NotFound();
             }
+            ViewData["productId"] = new SelectList(_context.product, "id", "id", anime.productId);
             return View(anime);
         }
 
@@ -85,7 +90,7 @@ namespace FilmSitesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id")] Anime anime)
+        public async Task<IActionResult> Edit(int id, [Bind("id,productId")] Anime anime)
         {
             if (id != anime.id)
             {
@@ -112,6 +117,7 @@ namespace FilmSitesi.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["productId"] = new SelectList(_context.product, "id", "id", anime.productId);
             return View(anime);
         }
 
@@ -124,6 +130,7 @@ namespace FilmSitesi.Controllers
             }
 
             var anime = await _context.anime
+                .Include(a => a.Product)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (anime == null)
             {

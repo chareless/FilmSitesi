@@ -21,7 +21,8 @@ namespace FilmSitesi.Controllers
         // GET: Series
         public async Task<IActionResult> Index()
         {
-            return View(await _context.serie.ToListAsync());
+            var veriContext = _context.serie.Include(s => s.Product);
+            return View(await veriContext.ToListAsync());
         }
 
         // GET: Series/Details/5
@@ -33,6 +34,7 @@ namespace FilmSitesi.Controllers
             }
 
             var series = await _context.serie
+                .Include(s => s.Product)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (series == null)
             {
@@ -45,6 +47,7 @@ namespace FilmSitesi.Controllers
         // GET: Series/Create
         public IActionResult Create()
         {
+            ViewData["productId"] = new SelectList(_context.product, "id", "id");
             return View();
         }
 
@@ -53,7 +56,7 @@ namespace FilmSitesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id")] Series series)
+        public async Task<IActionResult> Create([Bind("id,productId")] Series series)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +64,7 @@ namespace FilmSitesi.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["productId"] = new SelectList(_context.product, "id", "id", series.productId);
             return View(series);
         }
 
@@ -77,6 +81,7 @@ namespace FilmSitesi.Controllers
             {
                 return NotFound();
             }
+            ViewData["productId"] = new SelectList(_context.product, "id", "id", series.productId);
             return View(series);
         }
 
@@ -85,7 +90,7 @@ namespace FilmSitesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id")] Series series)
+        public async Task<IActionResult> Edit(int id, [Bind("id,productId")] Series series)
         {
             if (id != series.id)
             {
@@ -112,6 +117,7 @@ namespace FilmSitesi.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["productId"] = new SelectList(_context.product, "id", "id", series.productId);
             return View(series);
         }
 
@@ -124,6 +130,7 @@ namespace FilmSitesi.Controllers
             }
 
             var series = await _context.serie
+                .Include(s => s.Product)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (series == null)
             {

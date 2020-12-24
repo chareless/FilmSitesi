@@ -21,7 +21,8 @@ namespace FilmSitesi.Controllers
         // GET: Sliders
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Slider.ToListAsync());
+            var veriContext = _context.Slider.Include(s => s.Product);
+            return View(await veriContext.ToListAsync());
         }
 
         // GET: Sliders/Details/5
@@ -33,6 +34,7 @@ namespace FilmSitesi.Controllers
             }
 
             var slider = await _context.Slider
+                .Include(s => s.Product)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (slider == null)
             {
@@ -45,6 +47,7 @@ namespace FilmSitesi.Controllers
         // GET: Sliders/Create
         public IActionResult Create()
         {
+            ViewData["productId"] = new SelectList(_context.product, "id", "id");
             return View();
         }
 
@@ -53,7 +56,7 @@ namespace FilmSitesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id")] Slider slider)
+        public async Task<IActionResult> Create([Bind("id,productId")] Slider slider)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +64,7 @@ namespace FilmSitesi.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["productId"] = new SelectList(_context.product, "id", "id", slider.productId);
             return View(slider);
         }
 
@@ -77,6 +81,7 @@ namespace FilmSitesi.Controllers
             {
                 return NotFound();
             }
+            ViewData["productId"] = new SelectList(_context.product, "id", "id", slider.productId);
             return View(slider);
         }
 
@@ -85,7 +90,7 @@ namespace FilmSitesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id")] Slider slider)
+        public async Task<IActionResult> Edit(int id, [Bind("id,productId")] Slider slider)
         {
             if (id != slider.id)
             {
@@ -112,6 +117,7 @@ namespace FilmSitesi.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["productId"] = new SelectList(_context.product, "id", "id", slider.productId);
             return View(slider);
         }
 
@@ -124,6 +130,7 @@ namespace FilmSitesi.Controllers
             }
 
             var slider = await _context.Slider
+                .Include(s => s.Product)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (slider == null)
             {
