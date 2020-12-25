@@ -20,14 +20,13 @@
         </div>
     </div>
 </section>
-    
 <!-- Hero Section End -->
 <!-- Product Section Begin -->
 <section class="product spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <div class="trending__product">
+                <div class="popular__product">
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <div class="section-title">
@@ -36,140 +35,161 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="btn__all">
-                                <a href="#" class="primary-btn">Hepsini Gör <span class="arrow_right"></span></a>
+                                <a href="../Oylananlar" class="primary-btn">Hepsini Gör <span class="arrow_right"></span></a>
                             </div>
                         </div>
                     </div>
-                    @foreach(var item in Model.Product)
-                    {
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="@item.url">
-                                    <div class="ep">Bölüm sayısı</div>
-                                    <div class="comment"><i class="fa fa-comments"></i> Yorum Sayısı</div>
-                                    <div class="view"><i class="fa fa-eye"></i> Görüntülenme Sayısı</div>
-                                </div>
-                                <div class="product__item__text">
-                                    <ul>
-                                        <li>@item.kategori/li>
-                                    </ul>
-                                    <h5><a href="#">@item.isim</a></h5>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        </div>
-                    }
-                </div>
-                
-                <div class="popular__product">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8 col-sm-8">
-                            <div class="section-title">
-                                <h4>Popular Shows</h4>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4">
-                            <div class="btn__all">
-                                <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    @foreach (var item in Model.Product)
-                    {
-                        <div class="row">
+                        @{ 
+                            int oysayac = 0;
+                        }
+                        @foreach (var item in Model.Product)
+                        {
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="@item.url">
-                                        <div class="ep">Bölüm sayısı</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> Yorum Sayısı</div>
-                                        <div class="view"><i class="fa fa-eye"></i> Görüntülenme Sayısı</div>
+                                        <div class="ep">@item.süre</div>
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
-                                            <li>@item.kategori/li>
+                                            @if (item.tur != null)
+                                            {
+                                                string[] turayir = item.tur.Split(' ');
+                                                @foreach (var items in turayir)
+                                                {
+                                                    <li>@items</li>
+                                                }
+                                            }
                                         </ul>
-                                        <h5><a href="#">@item.isim</a></h5>
+                                        <h5><a href="../Home/Icerik?text=@item.idName">@item.isim</a></h5>
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-                    }
+                            oysayac++;
+                            if (oysayac == 6) break;
+                        }
+                    </div>
                 </div>
                 <div class="recent__product">
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <div class="section-title">
-                                <h4>En Son Çıkanlar</h4>
+                                <h4>En Son Çıkan Filmler</h4>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="btn__all">
-                                <a href="#" class="primary-btn">Hepsini Gör <span class="arrow_right"></span></a>
+                                <a href="../Eklenenler/Anime" class="primary-btn">Hepsini Gör <span class="arrow_right"></span></a>
                             </div>
                         </div>
                     </div>
-                    @foreach (var item in Model.Product)
-                    {
-                        <div class="row">
+                    <div class="row">
+                        @foreach (var item in Model.Movies)
+                        {
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="@item.url">
-                                        <div class="ep">Bölüm sayısı</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> Yorum Sayısı</div>
-                                        <div class="view"><i class="fa fa-eye"></i> Görüntülenme Sayısı</div>
+                                    <div class="product__item__pic set-bg" data-setbg="@item.Product.url">
+                                        <div class="ep">@item.Product.süre</div>
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
-                                            <li>@item.kategori/li>
+                                            @if (item.Product.tur != null)
+                                            {
+                                                string[] turayir = item.Product.tur.Split(' ');
+                                                @foreach (var items in turayir)
+                                                {
+                                                    <li>@items</li>
+                                                }
+                                            }
                                         </ul>
-                                        <h5><a href="#">@item.isim</a></h5>
+                                        <h5><a href="../Home/Icerik?text=@item.Product.idName">@item.Product.isim</a></h5>
                                     </div>
                                 </div>
                             </div>
+                        }
+                    </div>
+                </div>
 
-                        </div>
-                    }
-                </div>
-                </div>
-            <div class="live__product">
+            <div class="recent__product">
                 <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-8">
                         <div class="section-title">
-                            <h4>Filmler</h4>
+                            <h4>En Son Çıkan Diziler</h4>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <div class="btn__all">
-                            <a href="#" class="primary-btn">Hepsini Gör <span class="arrow_right"></span></a>
+                            <a href="../Eklenenler/Anime" class="primary-btn">Hepsini Gör <span class="arrow_right"></span></a>
                         </div>
                     </div>
                 </div>
-                @foreach (var item in Model.Product)
-                {
-                    <div class="row">
+                <div class="row">
+                    @foreach (var item in Model.Series)
+                    {
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="@item.url">
-                                    <div class="ep">Bölüm sayısı</div>
-                                    <div class="comment"><i class="fa fa-comments"></i> Yorum Sayısı</div>
-                                    <div class="view"><i class="fa fa-eye"></i> Görüntülenme Sayısı</div>
+                                <div class="product__item__pic set-bg" data-setbg="@item.Product.url">
+                                    <div class="ep">@item.Product.süre</div>
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
-                                        <li>@item.kategori/li>
+                                        @if (item.Product.tur != null)
+                                        {
+                                            string[] turayir = item.Product.tur.Split(' ');
+                                            @foreach (var items in turayir)
+                                            {
+                                                <li>@items</li>
+                                            }
+                                        }
                                     </ul>
-                                    <h5><a href="#">@item.isim</a></h5>
+                                    <h5><a href="../Home/Icerik?text=@item.Product.idName">@item.Product.isim</a></h5>
                                 </div>
                             </div>
                         </div>
-
+                    }
                     </div>
-                }
             </div>
-            </div>
+
+            <div class="recent__product">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <div class="section-title">
+                            <h4>En Son Çıkan Animeler</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="btn__all">
+                            <a href="../Eklenenler/Anime" class="primary-btn">Hepsini Gör <span class="arrow_right"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach (var item in Model.Anime)
+                    {
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="@item.Product.url">
+                                    <div class="ep">@item.Product.süre</div>
+                                </div>
+                                <div class="product__item__text">
+                                    <ul>
+                                        @if (item.Product.tur != null)
+                                        {
+                                            string[] turayir = item.Product.tur.Split(' ');
+                                            @foreach (var items in turayir)
+                                            {
+                                                <li>@items</li>
+                                                }
+                                        }
+                                    </ul>
+                                    <h5><a href="../Home/Icerik?text=@item.Product.idName">@item.Product.isim</a></h5>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    </div>
+            </div></div>
+        </div>
         </div>
 </section>
 <!-- Product Section End -->

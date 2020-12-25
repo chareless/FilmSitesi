@@ -1,0 +1,43 @@
+﻿@model FilmSitesi.Models.AllData
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="popular__product">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <div class="section-title">
+                                <h4>Çok Oylananlar</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @foreach (var item in Model.Product)
+                        {
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="@item.url">
+                                        <div class="ep">@item.süre</div>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <ul>
+                                            @if (item.tur != null)
+                                            {
+                                                string[] turayir = item.tur.Split(' ');
+                                                @foreach (var items in turayir)
+                                                {
+                                                    <li>@items</li>
+                                                }
+                                            }
+                                        </ul>
+                                        <h5><a href="../Home/Icerik?text=@item.idName">@item.isim</a></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+</section>

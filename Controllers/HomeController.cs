@@ -20,14 +20,20 @@ namespace FilmSitesi.Controllers
         public IActionResult Index()
         {
             var slider = _context.Slider.ToList();
-            var product = _context.product.ToList();
+            var movies = (from Movies in _context.movie orderby Movies.id descending select Movies).Take(6);
+            var series = (from Series in _context.serie orderby Series.id descending select Series).Take(6);
+            var animes = (from Anime in _context.anime orderby Anime.id descending select Anime).Take(6);
+            var product = from Product in _context.product orderby Product.skor descending select Product;
             var Class = new AllData();
             Class.Slider=slider;
-            Class.Product = product;
+            Class.Movies = movies.ToList();
+            Class.Series = series.ToList();
+            Class.Anime = animes.ToList();
+            Class.Product = product.ToList();
             return View(Class);
         }
 
-        public IActionResult Filmler(string sortOrder)
+        public IActionResult Filmler(string? sortOrder)
         {
             if(sortOrder=="sort")
             {
@@ -36,11 +42,10 @@ namespace FilmSitesi.Controllers
                 Class.Movies = movies.ToList();
                 return View(Class);
             }
-            
             return View();
         }
 
-        public IActionResult Diziler(string sortOrder)
+        public IActionResult Diziler(string? sortOrder)
         {
             if (sortOrder =="sort")
             {
@@ -53,7 +58,7 @@ namespace FilmSitesi.Controllers
             return View();
         }
 
-        public IActionResult Animeler(string sortOrder)
+        public IActionResult Animeler(string? sortOrder)
         {
             if (sortOrder =="sort")
             {
