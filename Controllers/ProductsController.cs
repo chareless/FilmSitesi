@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FilmSitesi.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FilmSitesi.Controllers
 {
@@ -19,6 +20,7 @@ namespace FilmSitesi.Controllers
         }
 
         // GET: Products
+        [Authorize (Roles ="Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.product.ToListAsync());

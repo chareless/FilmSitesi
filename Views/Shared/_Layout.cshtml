@@ -1,9 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FilmSitesi</title>
+    <title>@ViewData["Title"] - ExtraOrdinary</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
@@ -36,11 +39,11 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a asp-controller="Home" asp-action="Index">
-                            <img src="../../img/logo.png" alt="">
+                            <img src="../../../img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
@@ -58,21 +61,34 @@
                         </nav>
                     </div>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-4">
                     <div class="header__right">
-                        <a asp-controller="Home" asp-action="Arama" class="search-switch"><span class="icon_search"></span></a>
-                        <a asp-controller="Home" asp-action="Kayit"><span class="icon_profile"></span></a>
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><span class="icon_profile"></span></a>
+
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name</a>
+                                    <form class="form-inline" style="display:inherit" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                        <button type="submit" class="btn btn-outline-primary">Çıkış Yap</button>
+                                    </form>
+                            }
+                            else
+                            {
+                                    <a  asp-area="Identity" asp-page="/Account/Register">Kayıt Ol</a>
+                                    <a  asp-area="Identity" asp-page="/Account/Login">Giriş Yap</a>
+                            }
                     </div>
                 </div>
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
     </header>
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+    </div>
 
-    <!-- Footer Section Begin -->
     <footer class="footer">
         <div class="page-up">
             <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
@@ -81,7 +97,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="footer__logo">
-                        <a asp-controller="Home" asp-action="Index"><img src="../../img/logo.png" alt=""></a>
+                        <a asp-controller="Home" asp-action="Index"><img src="../../../img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -106,7 +122,6 @@
         </div>
     </footer>
     <!-- Footer Section End -->
-
     <!-- Search model Begin -->
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
@@ -125,8 +140,6 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>

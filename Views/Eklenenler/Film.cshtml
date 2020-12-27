@@ -1,4 +1,7 @@
 ﻿@model FilmSitesi.Models.AllData
+@{ 
+    int yorumSayac = 0;
+}
 <section class="product spad">
     <div class="container">
         <div class="row">
@@ -14,10 +17,18 @@
                     <div class="row">
                         @foreach (var item in Model.Movies)
                         {
+                            yorumSayac = 0;
+                            foreach (var items in Model.Yorum)
+                            {
+                                if (items.productId == item.productId)
+                                {
+                                    yorumSayac++;
+                                }
+                            }
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="@item.Product.url">
-                                        <div class="ep">@item.Product.süre</div>
+                                    <div class="product__item__pic set-bg" data-setbg="@item.Product.url" style="background:url(@item.Product.url)">
+                                        <div class="comment"><i class="fa fa-comments"></i> @yorumSayac</div>
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
@@ -35,6 +46,7 @@
                                 </div>
                             </div>
                         }
+
                     </div>
                 </div>
             </div>

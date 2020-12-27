@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30330.147
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmSitesi", "FilmSitesi.csproj", "{0D8BA054-97EE-4B36-A089-E538A7078822}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmSitesi", "FilmSitesi.csproj", "{33CE361B-8C1E-401B-ABF8-66BA9F297471}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0D8BA054-97EE-4B36-A089-E538A7078822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D8BA054-97EE-4B36-A089-E538A7078822}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D8BA054-97EE-4B36-A089-E538A7078822}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D8BA054-97EE-4B36-A089-E538A7078822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33CE361B-8C1E-401B-ABF8-66BA9F297471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33CE361B-8C1E-401B-ABF8-66BA9F297471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33CE361B-8C1E-401B-ABF8-66BA9F297471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33CE361B-8C1E-401B-ABF8-66BA9F297471}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9745541E-356D-41EF-BB15-695797E8D0E4}
+		SolutionGuid = {3DCD50BB-F165-4759-9459-A324C93C09BE}
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,7 @@
 ﻿@model FilmSitesi.Models.AllData 
+@{ 
+    int yorumSayac = 0;
+}
 <section class="hero">
     <div class="container">
         <div class="hero__slider owl-carousel">
@@ -11,7 +14,7 @@
                             <div class="label">@item.Product.tur</div>
                             <h2>@item.Product.isim</h2>
                             <p>@item.Product.hakkında</p>
-                            <a href="#"><span>Şimdi Oku.</span> <i class="fa fa-angle-right"></i></a>
+                            <a href="../Home/Icerik?text=@item.Product.idName"><span>Şimdi Oku.</span> <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -45,10 +48,19 @@
                         }
                         @foreach (var item in Model.Product)
                         {
+                            yorumSayac = 0;
+                            foreach (var items in Model.Yorum)
+                            {
+                                if (items.productId == item.id)
+                                {
+                                    yorumSayac++;
+                                }
+                            }
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="@item.url">
                                         <div class="ep">@item.süre</div>
+                                        <div class="comment"><i class="fa fa-comments"></i>@yorumSayac</div>
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
@@ -79,17 +91,26 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="btn__all">
-                                <a href="../Eklenenler/Anime" class="primary-btn">Hepsini Gör <span class="arrow_right"></span></a>
+                                <a href="../Eklenenler/Film" class="primary-btn">Hepsini Gör <span class="arrow_right"></span></a>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         @foreach (var item in Model.Movies)
                         {
+                            yorumSayac = 0;
+                            foreach (var items in Model.Yorum)
+                            {
+                                if (items.productId == item.productId)
+                                {
+                                    yorumSayac++;
+                                }
+                            }
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="@item.Product.url">
                                         <div class="ep">@item.Product.süre</div>
+                                        <div class="comment"><i class="fa fa-comments"></i>@yorumSayac</div>
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
@@ -119,17 +140,26 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <div class="btn__all">
-                            <a href="../Eklenenler/Anime" class="primary-btn">Hepsini Gör <span class="arrow_right"></span></a>
+                            <a href="../Eklenenler/Dizi" class="primary-btn">Hepsini Gör <span class="arrow_right"></span></a>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     @foreach (var item in Model.Series)
                     {
+                        yorumSayac = 0;
+                        foreach (var items in Model.Yorum)
+                        {
+                            if (items.productId == item.productId)
+                            {
+                                yorumSayac++;
+                            }
+                        }
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="@item.Product.url">
                                     <div class="ep">@item.Product.süre</div>
+                                    <div class="comment"><i class="fa fa-comments"></i>@yorumSayac</div>
                                 </div>
                                 <div class="product__item__text">
                                     <ul>
@@ -166,10 +196,19 @@
                 <div class="row">
                     @foreach (var item in Model.Anime)
                     {
+                        yorumSayac = 0;
+                        foreach (var items in Model.Yorum)
+                        {
+                            if (items.productId == item.productId)
+                            {
+                                yorumSayac++;
+                            }
+                        }
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="@item.Product.url">
                                     <div class="ep">@item.Product.süre</div>
+                                    <div class="comment"><i class="fa fa-comments"></i>@yorumSayac</div>
                                 </div>
                                 <div class="product__item__text">
                                     <ul>

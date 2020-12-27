@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -33,24 +36,28 @@
     <header class="header">
         <div class="container">
             <div class="row">
-                
+
                 <div class="col-lg-4">
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
                                 <li class="active"><a href="">Admin Panel</a></li>
-                                <li ><a asp-action ="Create">Create New</a></li>
-                                
-
-                            
+                                <li><a asp-action="Create">Create New</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="header__right">
-                       
+
                         <a href="./login.html"><span class="icon_profile"></span></a>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name</a>
+                            <form class="form-inline" style="display:inherit" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button type="submit" class="btn btn-outline-primary">Çıkış Yap</button>
+                            </form>
+                        }
                     </div>
                 </div>
             </div>
@@ -63,7 +70,7 @@
         </main>
     </div>
 
-    
+
     <script src="~/js/jquery-3.3.1.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/player.js"></script>

@@ -20,27 +20,33 @@ namespace FilmSitesi.Controllers
         {
             var anime = from Anime in _context.anime orderby Anime.id descending select Anime;
             var product = _context.product.ToList();
+            var yorum = _context.yorum.ToList();
             var Class = new AllData();
             Class.Anime = anime.ToList();
             Class.Product = product;
+            Class.Yorum = yorum;
             return View(Class);
         }
         public IActionResult Film()
         {
             var movies = from Movies in _context.movie orderby Movies.id descending select Movies;
             var product = _context.product.ToList();
+            var yorum = _context.yorum.ToList();
             var Class = new AllData();
             Class.Movies = movies.ToList();
             Class.Product = product;
+            Class.Yorum = yorum;
             return View(Class);
         }
         public IActionResult Dizi()
         {
             var series = from Series in _context.serie orderby Series.id descending select Series;
             var product = _context.product.ToList();
+            var yorum = _context.yorum.ToList();
             var Class = new AllData();
             Class.Series = series.ToList();
             Class.Product = product;
+            Class.Yorum = yorum;
             return View(Class);
         }
     }

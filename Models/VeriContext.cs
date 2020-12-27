@@ -5,11 +5,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using FilmSitesi.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace FilmSitesi.Models
 {
     
-        public class VeriContext : DbContext
+        public class VeriContext : IdentityDbContext<User>
         {
             public VeriContext(DbContextOptions<VeriContext> options) : base(options)
             {

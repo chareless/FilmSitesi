@@ -7,8 +7,7 @@
         <div class="anime__details__content">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="anime__details__pic set-bg" data-setbg="@item.url">
-                        <div class="view"><i class="fa fa-eye"></i>Görüntülenme Sayısı</div>
+                    <div class="product__item__pic set-bg" data-setbg="@item.url" style="background:url(@item.url)">
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -64,24 +63,51 @@
                     @foreach (var items in Model.Yorum)
                     {
                         <div class="anime__review__item">
-                        <div class="anime__review__item__text">
-                        <h6>@items.User.isim (@items.User.kadi)- </h6>
-                        <p>
-                            @items.icerik
-                        </p>
-                        </div>
+                            <div class="anime__review__item__text">
+                                <h6>
+                                    @items.User.isim - (@items.User.UserName)
+                                    @if (User.Identity.IsAuthenticated && items.User.Email == User.Identity.Name || User.IsInRole("Admin"))
+                                    {
+                                        <a asp-controller="Home" asp-action="Delete" asp-route-id="@items.id">Yorumu Sil </a>
+                                
+                                    }
+                                    </h6>
+                                <p>
+                                    @items.icerik
+                                </p>
+                            </div>
                         </div>
                     }
                 </div>
-                <div class="anime__details__form">
-                    <div class="section-title">
-                        <h5>Yorumunuz</h5>
-                    </div>
-                    <form action="#">
-                        <textarea placeholder="Your Comment"></textarea>
-                        <button type="submit"><i class="fa fa-location-arrow"></i>Paylaş</button>
-                    </form>
+                @if(User.Identity.IsAuthenticated)
+                {
+            <div class="anime__details__form">
+                <div class="section-title">
+                    <h5>Yorumunuz</h5>
                 </div>
+
+                @foreach (var items in Model.User)
+                {
+                    if (items.UserName == User.Identity.Name)
+                    {
+                        <form asp-controller="Home" asp-action="Icerik">
+                            <div class="form-group">
+                                <input asp-for="yorum.userId" value="@items.Id" class="form-control" hidden/>
+                                <input asp-for="yorum.productId" value="@item.id" class="form-control" hidden/>
+                                <textarea asp-for="yorum.icerik" placeholder="Your Comment"></textarea>
+                            </div>
+                            <button type="submit"><i class="fa fa-location-arrow"></i>Yorum Yap</button>
+                        </form>
+
+                        <a asp-action="Yorum">Yorum Yap</a>
+                    }
+
+                }
+
+
+            </div>
+                }
+                
             </div>
         </div>
     </div>
