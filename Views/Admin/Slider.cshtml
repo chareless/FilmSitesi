@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FilmSitesi.Models.Slider>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class=card>
+    <div class="card-body">
+        <table class="table-dark table-sm">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.id)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" asp-action="SliderEdit" asp-route-id="@item.id">Edit</a> |
+                            <a class="btn btn-success" asp-action="SliderDetails" asp-route-id="@item.id">Details</a> |
+                            <a class="btn btn-danger" asp-action="SliderDelete" asp-route-id="@item.id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

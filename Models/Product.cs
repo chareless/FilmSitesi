@@ -43,6 +43,15 @@ namespace FilmSitesi.Models
         [Display(Name ="Fotoğraf")]
         public string url { get; set; }
 
+        [Display(Name = "SliderFotoğraf")]
+        public string sliderUrl { get; set; }
+
+        [Display(Name = "YanFotoğraf")]
+        public string yanUrl { get; set; }
+
+        [Display(Name = "DetaylarFotoğraf")]
+        public string detailUrl { get; set; }
+
         [Display(Name = "Fragman URL")]
         public string fragman { get; set; }
 

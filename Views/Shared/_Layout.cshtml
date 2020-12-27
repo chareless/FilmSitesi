@@ -47,6 +47,10 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li><a asp-controller="Admin" asp-action="Index">Admin</a></li>
+                                }
                                 <li class="active"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
                                 <li>
                                     <a asp-controller="Home" asp-action="Index">Kategoriler <span class="arrow_carrot-down"></span></a>
@@ -57,6 +61,7 @@
                                     </ul>
                                 </li>
                                 <li><a asp-controller="Home" asp-action="Iletisim">İletişim</a></li>
+
                             </ul>
                         </nav>
                     </div>

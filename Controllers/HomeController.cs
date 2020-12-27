@@ -96,9 +96,12 @@ namespace FilmSitesi.Controllers
             return View(yorum);
         }
 
+        public IActionResult Iletisim()
+        {
+            return View();
+        }
 
-        // GET: Yorums/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> YorumDelete(int? id)
         {
             if (id == null)
             {
@@ -118,9 +121,9 @@ namespace FilmSitesi.Controllers
         }
 
         // POST: Yorums/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("YorumDelete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> YorumDeleteConfirmed(int id)
         {
             var yorum = await _context.yorum.FindAsync(id);
             _context.yorum.Remove(yorum);
