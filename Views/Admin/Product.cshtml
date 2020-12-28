@@ -4,10 +4,11 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<a asp-action="ProductCreate">Create</a>
-<div class=card>
+
+<a class="btn btn-success" asp-action="ProductCreate">Create</a>
+<div class=card style="width:112%">
     <div class="card-body">
-        <table class="table-dark table-sm">
+        <table class="table-dark " style="width:100%">
 
             <tr>
                 <th>
@@ -39,23 +40,15 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.süre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.url)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.sliderUrl)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.yanUrl)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.detailUrl)
-                </th>
+                </th>              
+                
                 <th>
                     @Html.DisplayNameFor(model => model.fragman)
                 </th>
-                <th></th>
+                <th>
+                    
+                </th>
+
             </tr>
 
 
@@ -94,18 +87,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.süre)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.url)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.sliderUrl)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.yanUrl)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.detailUrl)
-                        </td>
+                        
                         <td>
                             @Html.DisplayFor(modelItem => item.fragman)
                         </td>

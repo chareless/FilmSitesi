@@ -445,7 +445,7 @@ namespace FilmSitesi.Controllers
         }
 
         // POST: Movies/Delete/5
-        [HttpPost, ActionName("MovieDelete")]
+        [HttpPost, ActionName("MoviesDelete")]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> MoviesDeleteConfirmed(int id)

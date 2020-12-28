@@ -4,14 +4,17 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<a  asp-action="AnimeCreate">Create</a> 
-<div class=card>
+<a class="btn btn-success" asp-action="AnimeCreate">Create</a>
+<div class=card style="width:112%">
     <div class="card-body">
-        <table class="table-dark table-sm">
+        <table class="table-dark " style="width:100%">
             <thead>
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.Product)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product.isim)
                     </th>
                     <th></th>
                 </tr>
@@ -19,16 +22,19 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Product.id)
-                        </td>
-                        <td>
-                            <a class="btn btn-primary" asp-action="AnimeEdit" asp-route-id="@item.id">Edit</a> |
-                            <a class="btn btn-success" asp-action="AnimeDetails" asp-route-id="@item.id">Details</a> |
-                            <a class="btn btn-danger" asp-action="AnimeDelete" asp-route-id="@item.id">Delete</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.isim)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" asp-action="AnimeEdit" asp-route-id="@item.id">Edit</a> |
+                        <a class="btn btn-success" asp-action="AnimeDetails" asp-route-id="@item.id">Details</a> |
+                        <a class="btn btn-danger" asp-action="AnimeDelete" asp-route-id="@item.id">Delete</a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
