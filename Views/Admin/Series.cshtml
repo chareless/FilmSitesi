@@ -4,33 +4,33 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-    <div class=card>
-        <div class="card-body">
-            <table class="table-dark table-sm">
-                <thead>
+<a asp-action="SeriesCreate">Create</a>
+<div class=card>
+    <div class="card-body">
+        <table class="table-dark table-sm">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
                     <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Product)
-                        </th>
-                        <th></th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.id)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" asp-action="SeriesEdit" asp-route-id="@item.id">Edit</a> |
+                            <a class="btn btn-success" asp-action="SeriesDetails" asp-route-id="@item.id">Details</a> |
+                            <a class="btn btn-danger" asp-action="SeriesDelete" asp-route-id="@item.id">Delete</a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Product.id)
-                            </td>
-                            <td>
-                                <a class="btn btn-primary" asp-action="SeriesEdit" asp-route-id="@item.id">Edit</a> |
-                                <a class="btn btn-success" asp-action="SeriesDetails" asp-route-id="@item.id">Details</a> |
-                                <a class="btn btn-danger" asp-action="SeriesDelete" asp-route-id="@item.id">Delete</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                }
+            </tbody>
+        </table>
     </div>
+</div>
