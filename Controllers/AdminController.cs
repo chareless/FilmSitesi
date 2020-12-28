@@ -18,7 +18,7 @@ namespace FilmSitesi.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             return View();

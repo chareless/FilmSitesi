@@ -22,9 +22,7 @@ namespace FilmSitesi.Models
             public DbSet<Anime> anime { get; set; }
             public DbSet<Movies> movie{ get; set; }
             public DbSet<Series> serie { get; set; }
-            public DbSet<FilmSitesi.Models.Slider> Slider { get; set; }
-           
-
+            public DbSet<Slider> Slider { get; set; }
         }
     
 }
