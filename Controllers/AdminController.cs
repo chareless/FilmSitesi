@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace FilmSitesi.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         private readonly VeriContext _context;
@@ -18,24 +19,15 @@ namespace FilmSitesi.Controllers
         {
             _context = context;
         }
-        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             return View();
         }
-
-
-        //PRODUCT BİLGİLERİ
-
-
-        // GET: Products
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Product()
         {
             return View(await _context.product.ToListAsync());
         }
-        [Authorize(Roles = "Admin")]
-        // GET: Products/Details/5
+
         public async Task<IActionResult> ProductDetails(int? id)
         {
             if (id == null)
@@ -52,16 +44,11 @@ namespace FilmSitesi.Controllers
 
             return View(product);
         }
-        [Authorize(Roles = "Admin")]
-        // GET: Products/Create
         public IActionResult ProductCreate()
         {
             return View();
         }
-        [Authorize(Roles = "Admin")]
-        // POST: Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ProductCreate([Bind("id,idName,isim,hakkında,kategori,yapımcı,tarihi,tur,skor,süre,url,sliderUrl,yanUrl,detailUrl,fragman")] Product product)
@@ -74,8 +61,6 @@ namespace FilmSitesi.Controllers
             }
             return View(product);
         }
-        [Authorize(Roles = "Admin")]
-        // GET: Products/Edit/5
         public async Task<IActionResult> ProductEdit(int? id)
         {
             if (id == null)
@@ -90,10 +75,7 @@ namespace FilmSitesi.Controllers
             }
             return View(product);
         }
-        [Authorize(Roles = "Admin")]
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ProductEdit(int id, [Bind("id,idName,isim,hakkında,kategori,yapımcı,tarihi,tur,skor,süre,url,sliderUrl,yanUrl,detailUrl,fragman")] Product product)
@@ -125,8 +107,6 @@ namespace FilmSitesi.Controllers
             }
             return View(product);
         }
-        [Authorize(Roles = "Admin")]
-        // GET: Products/Delete/5
         public async Task<IActionResult> ProductDelete(int? id)
         {
             if (id == null)
@@ -143,8 +123,7 @@ namespace FilmSitesi.Controllers
 
             return View(product);
         }
-        [Authorize(Roles = "Admin")]
-        // POST: Products/Delete/5
+
         [HttpPost, ActionName("ProductDelete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ProductDeleteConfirmed(int id)
@@ -161,50 +140,23 @@ namespace FilmSitesi.Controllers
         }
 
 
+
         //ANİME BİLGİLERİ
 
 
 
-        // GET: Animes
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Anime()
         {
             var veriContext = _context.anime.Include(a => a.Product);
             return View(await veriContext.ToListAsync());
         }
 
-        // GET: Animes/Details/5
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AnimeDetails(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var anime = await _context.anime
-                .Include(a => a.Product)
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (anime == null)
-            {
-                return NotFound();
-            }
-
-            return View(anime);
-        }
-
-        // GET: Animes/Create
-        [Authorize(Roles = "Admin")]
         public IActionResult AnimeCreate()
         {
             ViewData["productId"] = new SelectList(_context.product, "id", "id");
             return View();
         }
 
-        // POST: Animes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AnimeCreate([Bind("id,productId")] Anime anime)
@@ -219,8 +171,6 @@ namespace FilmSitesi.Controllers
             return View(anime);
         }
 
-        // GET: Animes/Edit/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AnimeEdit(int? id)
         {
             if (id == null)
@@ -237,12 +187,8 @@ namespace FilmSitesi.Controllers
             return View(anime);
         }
 
-        // POST: Animes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AnimeEdit(int id, [Bind("id,productId")] Anime anime)
         {
             if (id != anime.id)
@@ -274,8 +220,6 @@ namespace FilmSitesi.Controllers
             return View(anime);
         }
 
-        // GET: Animes/Delete/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AnimeDelete(int? id)
         {
             if (id == null)
@@ -294,8 +238,6 @@ namespace FilmSitesi.Controllers
             return View(anime);
         }
 
-        // POST: Animes/Delete/5
-        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("AnimeDelete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AnimeDeleteConfirmed(int id)
@@ -312,51 +254,27 @@ namespace FilmSitesi.Controllers
         }
 
 
+
         //MOVİE BİLGİLERİ
 
 
-        // GET: Movies
-        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Movies()
         {
             var veriContext = _context.movie.Include(m => m.Product);
             return View(await veriContext.ToListAsync());
         }
 
-        // GET: Movies/Details/5
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> MoviesDetails(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+      
 
-            var movies = await _context.movie
-                .Include(m => m.Product)
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (movies == null)
-            {
-                return NotFound();
-            }
-
-            return View(movies);
-        }
-
-        // GET: Movies/Create
-        [Authorize(Roles = "Admin")]
         public IActionResult MoviesCreate()
         {
             ViewData["productId"] = new SelectList(_context.product, "id", "id");
             return View();
         }
 
-        // POST: Movies/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> MoviesCreate([Bind("id,productId")] Movies movies)
         {
             if (ModelState.IsValid)
@@ -369,8 +287,6 @@ namespace FilmSitesi.Controllers
             return View(movies);
         }
 
-        // GET: Movies/Edit/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> MoviesEdit(int? id)
         {
             if (id == null)
@@ -387,11 +303,7 @@ namespace FilmSitesi.Controllers
             return View(movies);
         }
 
-        // POST: Movies/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> MoviesEdit(int id, [Bind("id,productId")] Movies movies)
         {
@@ -424,8 +336,6 @@ namespace FilmSitesi.Controllers
             return View(movies);
         }
 
-        // GET: Movies/Delete/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> MoviesDelete(int? id)
         {
             if (id == null)
@@ -444,9 +354,7 @@ namespace FilmSitesi.Controllers
             return View(movies);
         }
 
-        // POST: Movies/Delete/5
         [HttpPost, ActionName("MoviesDelete")]
-        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> MoviesDeleteConfirmed(int id)
         {
@@ -462,52 +370,25 @@ namespace FilmSitesi.Controllers
         }
 
 
+
         //SERİES BİLGİLERİ
 
 
 
-        // GET: Series
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Series()
         {
             var veriContext = _context.serie.Include(s => s.Product);
             return View(await veriContext.ToListAsync());
         }
 
-        // GET: Series/Details/5
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> SeriesDetails(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var series = await _context.serie
-                .Include(s => s.Product)
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (series == null)
-            {
-                return NotFound();
-            }
-
-            return View(series);
-        }
-
-        // GET: Series/Create
-        [Authorize(Roles = "Admin")]
         public IActionResult SeriesCreate()
         {
             ViewData["productId"] = new SelectList(_context.product, "id", "id");
             return View();
         }
 
-        // POST: Series/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SeriesCreate([Bind("id,productId")] Series series)
         {
             if (ModelState.IsValid)
@@ -520,8 +401,6 @@ namespace FilmSitesi.Controllers
             return View(series);
         }
 
-        // GET: Series/Edit/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SeriesEdit(int? id)
         {
             if (id == null)
@@ -538,11 +417,7 @@ namespace FilmSitesi.Controllers
             return View(series);
         }
 
-        // POST: Series/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SeriesEdit(int id, [Bind("id,productId")] Series series)
         {
@@ -575,8 +450,6 @@ namespace FilmSitesi.Controllers
             return View(series);
         }
 
-        // GET: Series/Delete/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SeriesDelete(int? id)
         {
             if (id == null)
@@ -595,10 +468,8 @@ namespace FilmSitesi.Controllers
             return View(series);
         }
 
-        // POST: Series/Delete/5
         [HttpPost, ActionName("SeriesDelete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SeriesDeleteConfirmed(int id)
         {
             var series = await _context.serie.FindAsync(id);
@@ -618,16 +489,12 @@ namespace FilmSitesi.Controllers
 
 
 
-        // GET: Sliders
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Slider()
         {
             var veriContext = _context.Slider.Include(s => s.Product);
             return View(await veriContext.ToListAsync());
         }
 
-        // GET: Sliders/Details/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SliderDetails(int? id)
         {
             if (id == null)
@@ -646,19 +513,13 @@ namespace FilmSitesi.Controllers
             return View(slider);
         }
 
-        // GET: Sliders/Create
-        [Authorize(Roles = "Admin")]
         public IActionResult SliderCreate()
         {
             ViewData["productId"] = new SelectList(_context.product, "id", "id");
             return View();
         }
 
-        // POST: Sliders/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SliderCreate([Bind("id,productId")] Slider slider)
         {
@@ -672,8 +533,6 @@ namespace FilmSitesi.Controllers
             return View(slider);
         }
 
-        // GET: Sliders/Edit/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SliderEdit(int? id)
         {
             if (id == null)
@@ -690,11 +549,7 @@ namespace FilmSitesi.Controllers
             return View(slider);
         }
 
-        // POST: Sliders/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SliderEdit(int id, [Bind("id,productId")] Slider slider)
         {
@@ -727,8 +582,6 @@ namespace FilmSitesi.Controllers
             return View(slider);
         }
 
-        // GET: Sliders/Delete/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SliderDelete(int? id)
         {
             if (id == null)
@@ -747,9 +600,7 @@ namespace FilmSitesi.Controllers
             return View(slider);
         }
 
-        // POST: Sliders/Delete/5
         [HttpPost, ActionName("SliderDelete")]
-        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SliderDeleteConfirmed(int id)
         {
@@ -769,16 +620,13 @@ namespace FilmSitesi.Controllers
         //YORUM BİLGİLERİ
 
 
-        // GET: Yorums
-        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Yorum()
         {
             var veriContext = _context.yorum.Include(y => y.Product).Include(y => y.User);
             return View(await veriContext.ToListAsync());
         }
 
-        // GET: Yorums/Details/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> YorumDetails(int? id)
         {
             if (id == null)
@@ -798,9 +646,6 @@ namespace FilmSitesi.Controllers
             return View(yorum);
         }
 
-
-        // GET: Yorums/Edit/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> YorumEdit(int? id)
         {
             if (id == null)
@@ -818,11 +663,7 @@ namespace FilmSitesi.Controllers
             return View(yorum);
         }
 
-        // POST: Yorums/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> YorumEdit(int id, [Bind("id,icerik,userId,productId")] Yorum yorum)
         {
@@ -856,8 +697,6 @@ namespace FilmSitesi.Controllers
             return View(yorum);
         }
 
-        // GET: Yorums/Delete/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> YorumDelete(int? id)
         {
             if (id == null)
@@ -877,9 +716,7 @@ namespace FilmSitesi.Controllers
             return View(yorum);
         }
 
-        // POST: Yorums/Delete/5
         [HttpPost, ActionName("YorumDelete")]
-        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> YorumDeleteConfirmed(int id)
         {

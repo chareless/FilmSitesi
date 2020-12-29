@@ -120,7 +120,6 @@ namespace FilmSitesi.Controllers
             return View(yorum);
         }
 
-        // POST: Yorums/Delete/5
         [HttpPost, ActionName("YorumDelete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> YorumDeleteConfirmed(int id)

@@ -92,6 +92,23 @@ namespace FilmSitesi.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
+
+            bool adminRol = await _roleManager.RoleExistsAsync("Admin");
+            bool userRol = await _roleManager.RoleExistsAsync("User");
+            if(!adminRol && !userRol)
+            {
+                var adminrol = new IdentityRole();
+                adminrol.Id = "1";
+                adminrol.Name = "Admin";
+                await _roleManager.CreateAsync(adminrol);
+                var userrol = new IdentityRole();
+                userrol.Id = "2";
+                userrol.Name = "User";
+                await _roleManager.CreateAsync(userrol);
+            }
+
+
+
             var role = _roleManager.FindByIdAsync(Input.isim).Result;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
@@ -107,8 +124,19 @@ namespace FilmSitesi.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-                    await _userManager.AddToRoleAsync(user, "User");
 
+                    string[] mailayir = user.Email.Split('@');
+                    foreach(var items in mailayir)
+                    {
+                        if(items=="sakarya.edu.tr")
+                        {
+                            await _userManager.AddToRoleAsync(user, "Admin");
+                        }
+                        else
+                        {
+                            await _userManager.AddToRoleAsync(user, "User");
+                        }
+                    }
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
