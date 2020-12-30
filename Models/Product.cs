@@ -20,13 +20,13 @@ namespace FilmSitesi.Models
         public string isim { get; set; }
 
         [Display(Name = "Hakkında")]
-        public string hakkında { get; set; }
+        public string hakkinda { get; set; }
 
         [Display(Name = "Kategori")]
         public string kategori { get; set; }
 
         [Display(Name = "Yapımcı")]
-        public string yapımcı { get; set; }
+        public string yapimci { get; set; }
 
         [Display(Name = "Tarih")]
         public string tarihi { get; set; }
@@ -35,10 +35,10 @@ namespace FilmSitesi.Models
         public string tur { get; set; }
 
         [Display(Name = "Skor")]
-        public int skor { get; set; }
+        public float skor { get; set; }
 
         [Display(Name = "Süre")]
-        public string süre { get; set; }
+        public string sure { get; set; }
 
         [Display(Name ="Fotoğraf")]
         public string url { get; set; }

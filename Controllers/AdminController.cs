@@ -57,7 +57,7 @@ namespace FilmSitesi.Controllers
             {
                 _context.Add(product);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Product));
             }
             return View(product);
         }
@@ -103,7 +103,7 @@ namespace FilmSitesi.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Product));
             }
             return View(product);
         }
