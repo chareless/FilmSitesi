@@ -38,7 +38,7 @@ namespace FilmSitesi.Controllers
 
         public IActionResult Filmler()
         {
-            var movies = from Movies in _context.movie orderby Movies.Product.isim  select Movies;
+            var movies = from Movies in _context.movie orderby Movies.Product.id descending  select Movies;
             var product = from Product in _context.product orderby Product.skor descending select Product;
             var yorum = _context.yorum.ToList();
             var Class = new AllData();
@@ -50,7 +50,7 @@ namespace FilmSitesi.Controllers
         }
         public IActionResult Diziler()
         {
-            var series = from Series in _context.serie orderby Series.Product.isim select Series;
+            var series = from Series in _context.serie orderby Series.Product.id descending select Series;
             var product = from Product in _context.product orderby Product.skor descending select Product;
             var yorum = _context.yorum.ToList();
             var Class = new AllData();
@@ -62,7 +62,7 @@ namespace FilmSitesi.Controllers
 
         public IActionResult Animeler()
         {
-            var anime = from Anime in _context.anime orderby Anime.Product.isim select Anime;
+            var anime = from Anime in _context.anime orderby Anime.Product.id descending select Anime;
             var product = from Product in _context.product orderby Product.skor descending select Product;
             var yorum = _context.yorum.ToList();
             var Class = new AllData();

@@ -78,36 +78,40 @@
                             @{
                                 oylananSayac = 0;
                             }
-                            @foreach (var item in Model.Movies)
+                            @foreach (var item in Model.Product)
                             {
-                                yorumSayac = 0;
-                                foreach (var items in Model.Yorum)
+                                @if (item.kategori == "Film")
                                 {
-                                    if (items.productId == item.productId)
+                                    yorumSayac = 0;
+                                    foreach (var items in Model.Yorum)
                                     {
-                                        yorumSayac++;
+                                        if (items.productId == item.id)
+                                        {
+                                            yorumSayac++;
+                                        }
                                     }
-                                }
-                                oylananSayac++;
-                                <div class="product__sidebar__comment__item">
-                                    <div class="product__sidebar__comment__item__pic">
-                                        <img src="@item.Product.yanUrl" alt="">
-                                    </div>
-                                    <div class="product__sidebar__comment__item__text">
-                                        <ul>
-                                            @if (item.Product.tur != null)
-                                            {
-                                                string[] turayir = item.Product.tur.Split(' ');
-                                                @foreach (var items in turayir)
+                                    oylananSayac++;
+                                    <div class="product__sidebar__comment__item">
+                                        <div class="product__sidebar__comment__item__pic">
+                                            <img src="@item.yanUrl" alt="">
+                                        </div>
+                                        <div class="product__sidebar__comment__item__text">
+                                            <ul>
+                                                @if (item.tur != null)
                                                 {
-                                                    <li>@items</li>
+                                                    string[] turayir = item.tur.Split(' ');
+                                                    @foreach (var items in turayir)
+                                                    {
+                                                        <li>@items</li>
+                                                    }
                                                 }
-                                            }
-                                        </ul>
-                                        <h5><a href="../Home/Icerik?text=@item.Product.idName">@item.Product.isim</a></h5>
-                                        <div class="comment"><i class="fa fa-comments"></i> @yorumSayac</div>
-                                    </div>
-                                </div>if (oylananSayac == 6) break;
+                                            </ul>
+                                            <h5><a href="../Home/Icerik?text=@item.idName">@item.isim</a></h5>
+                                            <div class="comment"><i class="fa fa-comments"></i> @yorumSayac</div>
+                                        </div>
+                                    </div>if (oylananSayac == 6) break;
+                                }
+
                             }
                         </div>
                         <div class="product__sidebar__comment">
