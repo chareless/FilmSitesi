@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FilmSitesi.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly VeriContext _context;
@@ -265,7 +265,7 @@ namespace FilmSitesi.Controllers
             return View(await veriContext.ToListAsync());
         }
 
-      
+
 
         public IActionResult MoviesCreate()
         {
@@ -613,122 +613,6 @@ namespace FilmSitesi.Controllers
         private bool SliderExists(int id)
         {
             return _context.Slider.Any(e => e.id == id);
-        }
-
-
-
-        //YORUM BİLGİLERİ
-
-
-
-        public async Task<IActionResult> Yorum()
-        {
-            var veriContext = _context.yorum.Include(y => y.Product).Include(y => y.User);
-            return View(await veriContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> YorumDetails(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var yorum = await _context.yorum
-                .Include(y => y.Product)
-                .Include(y => y.User)
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (yorum == null)
-            {
-                return NotFound();
-            }
-
-            return View(yorum);
-        }
-
-        public async Task<IActionResult> YorumEdit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var yorum = await _context.yorum.FindAsync(id);
-            if (yorum == null)
-            {
-                return NotFound();
-            }
-            ViewData["productId"] = new SelectList(_context.product, "id", "id", yorum.productId);
-            ViewData["userId"] = new SelectList(_context.user, "Id", "Id", yorum.userId);
-            return View(yorum);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> YorumEdit(int id, [Bind("id,icerik,userId,productId")] Yorum yorum)
-        {
-            if (id != yorum.id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(yorum);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!YorumExists(yorum.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Yorum));
-            }
-            ViewData["productId"] = new SelectList(_context.product, "id", "id", yorum.productId);
-            ViewData["userId"] = new SelectList(_context.user, "Id", "Id", yorum.userId);
-            return View(yorum);
-        }
-
-        public async Task<IActionResult> YorumDelete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var yorum = await _context.yorum
-                .Include(y => y.Product)
-                .Include(y => y.User)
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (yorum == null)
-            {
-                return NotFound();
-            }
-
-            return View(yorum);
-        }
-
-        [HttpPost, ActionName("YorumDelete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> YorumDeleteConfirmed(int id)
-        {
-            var yorum = await _context.yorum.FindAsync(id);
-            _context.yorum.Remove(yorum);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Yorum));
-        }
-
-        private bool YorumExists(int id)
-        {
-            return _context.yorum.Any(e => e.id == id);
         }
     }
 }
