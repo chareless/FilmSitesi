@@ -126,17 +126,16 @@ namespace FilmSitesi.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                     string[] mailayir = user.Email.Split('@');
-                    foreach(var items in mailayir)
+                    string mailAdres = mailayir[1];
+                    if(mailAdres=="sakarya.edu.tr")
                     {
-                        if(items=="sakarya.edu.tr")
-                        {
-                            await _userManager.AddToRoleAsync(user, "Admin");
-                        }
-                        else
-                        {
-                            await _userManager.AddToRoleAsync(user, "User");
-                        }
+                        await _userManager.AddToRoleAsync(user, "Admin");
                     }
+                    else
+                    {
+                       await _userManager.AddToRoleAsync(user, "User");
+                    }
+
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
