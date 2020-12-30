@@ -113,6 +113,9 @@
                         <div class="section-title">
                             <h5>En Yeniler</h5>
                         </div>
+                        @{
+                            oylananSayac = 0;
+                        }
                         @foreach (var item in Model.Anime)
                         {
                             yorumSayac = 0;
@@ -123,6 +126,7 @@
                                     yorumSayac++;
                                 }
                             }
+                            oylananSayac++;
                             <div class="product__sidebar__comment__item">
                                 <div class="product__sidebar__comment__item__pic">
                                     <img src="@item.Product.yanUrl" alt="">
@@ -142,6 +146,7 @@
                                     <div class="comment"><i class="fa fa-comments"></i> @yorumSayac</div>
                                 </div>
                             </div>
+                            if (oylananSayac == 6) break;
                         }
                     </div>
 
