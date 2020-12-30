@@ -16,23 +16,29 @@
                 @Html.DisplayFor(model => model.icerik)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.User)
+                @Html.DisplayNameFor(model => model.User.isim)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.User.Id)
+                @Html.DisplayFor(model => model.User.isim)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Product)
+                @Html.DisplayNameFor(model => model.User.UserName)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Product.id)
+                @Html.DisplayFor(model => model.User.UserName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Product.isim)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Product.isim)
             </dd>
         </dl>
 
         <form asp-action="YorumDelete">
             <input type="hidden" asp-for="id" />
             <input type="submit" value="Sil" class="btn btn-danger" /> |
-            <a asp-action="Index">Geri</a>
+            <a class="btn btn-success" asp-action="Index">Geri</a>
         </form>
     </div>
  </div>
