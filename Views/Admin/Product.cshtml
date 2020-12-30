@@ -37,10 +37,6 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.sure)
-                </th>              
-                
-                <th>
-                    @Html.DisplayNameFor(model => model.fragman)
                 </th>
                 <th>
                     
@@ -80,10 +76,6 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.sure)
-                        </td>
-                        
-                        <td>
-                            @Html.DisplayFor(modelItem => item.fragman)
                         </td>
                         <td><a class="btn btn-success" asp-action="ProductEdit" asp-route-id="@item.id">Edit</a></td>
                         <td><a class="btn btn-primary" asp-action="ProductDetails" asp-route-id="@item.id">Details</a></td>

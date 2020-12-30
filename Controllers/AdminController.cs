@@ -51,7 +51,7 @@ namespace FilmSitesi.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ProductCreate([Bind("id,idName,isim,hakkında,kategori,yapımcı,tarihi,tur,skor,süre,url,sliderUrl,yanUrl,detailUrl,fragman")] Product product)
+        public async Task<IActionResult> ProductCreate([Bind("id,idName,isim,hakkinda,kategori,yapimci,tarihi,tur,skor,sure,url,sliderUrl,yanUrl,detailUrl,fragman")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace FilmSitesi.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ProductEdit(int id, [Bind("id,idName,isim,hakkında,kategori,yapımcı,tarihi,tur,skor,süre,url,sliderUrl,yanUrl,detailUrl,fragman")] Product product)
+        public async Task<IActionResult> ProductEdit(int id, [Bind("id,idName,isim,hakkinda,kategori,yapimci,tarihi,tur,skor,sure,url,sliderUrl,yanUrl,detailUrl,fragman")] Product product)
         {
             if (id != product.id)
             {
